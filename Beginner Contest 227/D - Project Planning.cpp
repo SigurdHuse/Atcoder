@@ -5,22 +5,20 @@ typedef long long ll;
 using namespace std; 
 
 void solve(){
-	ll n, k; cin >> n >> k;
+	int n, k; cin >> n >> k;
 	vector<ll> v(n);
 	for(auto &a : v) cin >> a;
-	unordered_map<ll,int> mem;
-	ll cur = 0;
+	sort(all(v));
+	ll ans = 0; 
 	for(int i = 0; i < n; ++i){
-		cur += v[i];
-		mem[cur]++;
-	}
-	for(int i = 1; i < n; ++i){
-		v[i] += v[i-1];
-	}
-	ll ans = 0;
-	for(ll j : v){
-		ans += mem[k - j];
-		ans += j == k;
+		if(n - i < k) break;
+		if(v[i] != 0){
+			ans += v[i];
+			for(int j = i+1; j < i+k; ++j){
+				v[j] -= v[i];
+			}
+			v[i] = 0;
+		}
 	}
 	cout << ans << endl;
 }
