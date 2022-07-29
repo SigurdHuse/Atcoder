@@ -4,16 +4,12 @@
 typedef long long ll;
 using namespace std; 
 
+// Maximum weigth in minimum path for all vertices with path to all
+// vertices that come after it
+// Choose path greedily 
+
 void solve(){
-	int n; cin >> n;
-	vector<int> v(n), ans(n);
-	for(auto &a : v) cin >> a;
 	
-	for(int i = 0; i< n; ++i){
-		ans[v[i] - 1] = i + 1;
-	}
-	for(int i : ans) cout << i << " ";
-	cout << endl;
 }
 
 int main()

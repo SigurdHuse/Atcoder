@@ -5,15 +5,18 @@ typedef long long ll;
 using namespace std; 
 
 void solve(){
-	int n; cin >> n;
-	vector<int> v(n), ans(n);
-	for(auto &a : v) cin >> a;
-	
-	for(int i = 0; i< n; ++i){
-		ans[v[i] - 1] = i + 1;
+	ll res = 0;
+	int s, t; cin>> s >> t;
+	for(int a = 0; a <= s; ++a){
+		for(int b = 0; b <= s; ++b){
+			if(a + b > s) break;
+			for(int c = 0; c <= s; ++c){
+				if(a + b + c > s) break;
+				if(a*b*c <= t) res++;
+			} 
+		}
 	}
-	for(int i : ans) cout << i << " ";
-	cout << endl;
+	cout << res << endl;
 }
 
 int main()

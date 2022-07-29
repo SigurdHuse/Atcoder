@@ -6,14 +6,12 @@ using namespace std;
 
 void solve(){
 	int n; cin >> n;
-	vector<int> v(n), ans(n);
-	for(auto &a : v) cin >> a;
+	vector<pair<int,int>> v(n);
+	REP(i,n) cin >> v[i].first;
+	REP(i,n) v[i].second = i;
+	sort(all(v));
 	
-	for(int i = 0; i< n; ++i){
-		ans[v[i] - 1] = i + 1;
-	}
-	for(int i : ans) cout << i << " ";
-	cout << endl;
+	cout << v[n-2].second + 1 << endl;
 }
 
 int main()
