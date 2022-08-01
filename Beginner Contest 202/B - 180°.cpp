@@ -7,17 +7,15 @@
 typedef long long ll;
 using namespace std; 
 
-// We have two ovens 
-// This is a dp problem
-// Need to find how to get two sums as close as possible
-
 void solve(){
-	int n; cin >> n;
-	vector<int> v(n);
-	for(auto &t : v)cin >> t;
-	int s = accumulate(all(v), 0);
-	sort(all(v));
-	
+	string s; cin >> s;
+	reverse(all(s));
+	int n = SZ(s);
+	for(int i = 0; i < n; ++i){
+		if(s[i] == '6') s[i] = '9';
+		else if(s[i] == '9') s[i] = '6';
+	}
+	cout << s << endl;
 }
 
 int main()

@@ -7,16 +7,16 @@
 typedef long long ll;
 using namespace std; 
 
-// We have two ovens 
-// This is a dp problem
-// Need to find how to get two sums as close as possible
+ll cur = 0;
+
+const int M = 998244353;
 
 void solve(){
 	int n; cin >> n;
 	vector<int> v(n);
-	for(auto &t : v)cin >> t;
-	int s = accumulate(all(v), 0);
-	sort(all(v));
+	for(auto &a : v) cin >> a;
+	ll ans = n;
+	
 	
 }
 
