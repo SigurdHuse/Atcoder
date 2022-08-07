@@ -7,16 +7,23 @@
 typedef long long ll;
 using namespace std; 
 
-// Find all the ways to sum up to n and double it
-
 void solve(){
-	ll n; cin >> n;
-	while(n % 2 == 0) n /= 2;
-	ll sq = sqrt(n), ans = 0;
-	for(ll i = 1; i <= sq; ++i) if(n % i == 0) ans += 2;
-	if(sq*sq == n) ans--;
-	
-	cout << 2*ans << endl;
+	int n; cin >> n;
+	vector<ll> x(n);
+	ll X = 0;
+	for(ll i = 0; i < n; ++i){
+		ll a, b; cin>> a >> b;
+		X -=a;
+		x[i] = a + a + b;
+	}
+	sort(all(x));
+	ll ans = 0;
+	while(X <= 0){
+		X += x.back();
+		x.pop_back();
+		ans++;
+	}
+	cout << ans << endl;
 }
 
 int main()
