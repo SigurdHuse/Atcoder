@@ -7,21 +7,26 @@
 typedef long long ll;
 using namespace std; 
 
+// Keep track of sum and multiply
+
+const ll M = 1e9 + 7;
+
 void solve(){
 	int n; cin >> n;
-	vector<long double> v(n);
+	vector<ll> v(n);
 	for(auto &a : v) cin >> a;
-	
-	long double man = 0, euc = 0, cheb = -1e6;
-	for(long double x : v){
-		man += abs(x);
-		euc += abs(x)*abs(x);
-		cheb = max(cheb, abs(x));
+	ll s = 0, ans = 0;
+	for(ll a : v){
+		s += a;
+		s %= M;
 	}
-	cout << setprecision(16);
-	cout << man << endl;
-	cout << sqrt(euc) << endl;
-	cout << cheb << endl;
+	for(ll a : v){
+		s -= a;
+		s = (s + M) % M;
+		ans += s * a;
+		ans %= M;
+	}
+	cout << ans << endl;
 }
 
 int main()

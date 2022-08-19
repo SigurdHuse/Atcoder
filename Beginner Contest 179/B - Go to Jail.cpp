@@ -9,19 +9,15 @@ using namespace std;
 
 void solve(){
 	int n; cin >> n;
-	vector<long double> v(n);
-	for(auto &a : v) cin >> a;
-	
-	long double man = 0, euc = 0, cheb = -1e6;
-	for(long double x : v){
-		man += abs(x);
-		euc += abs(x)*abs(x);
-		cheb = max(cheb, abs(x));
+	vector<pair<int,int>> v(n);
+	for(auto &[a,b] : v) cin >> a >> b;
+	for(int i = 0; i < n-2; ++i){
+		if((v[i].f == v[i].s) && (v[i+1].f == v[i+1].s) && (v[i+2].f == v[i+2].s)){
+			cout << "Yes" << endl;
+			return;
+		}
 	}
-	cout << setprecision(16);
-	cout << man << endl;
-	cout << sqrt(euc) << endl;
-	cout << cheb << endl;
+	cout << "No" << endl;
 }
 
 int main()

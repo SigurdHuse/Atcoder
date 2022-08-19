@@ -7,21 +7,21 @@
 typedef long long ll;
 using namespace std; 
 
+// Find number of red stones x
+// If white stone is is less than x swap it
+// If a red stone is greater than x 
+
+
 void solve(){
 	int n; cin >> n;
-	vector<long double> v(n);
-	for(auto &a : v) cin >> a;
-	
-	long double man = 0, euc = 0, cheb = -1e6;
-	for(long double x : v){
-		man += abs(x);
-		euc += abs(x)*abs(x);
-		cheb = max(cheb, abs(x));
+	string s; cin >> s;
+	int cnt = 0;
+	for(char c : s) cnt += (c == 'R');
+	int ans = 0;
+	for(int i = 0; i < cnt; ++i){
+		if(s[i] == 'W') ans++;
 	}
-	cout << setprecision(16);
-	cout << man << endl;
-	cout << sqrt(euc) << endl;
-	cout << cheb << endl;
+	cout << ans << endl;
 }
 
 int main()

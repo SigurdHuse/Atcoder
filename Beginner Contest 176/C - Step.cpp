@@ -9,19 +9,14 @@ using namespace std;
 
 void solve(){
 	int n; cin >> n;
-	vector<long double> v(n);
+	vector<ll> v(n);
 	for(auto &a : v) cin >> a;
-	
-	long double man = 0, euc = 0, cheb = -1e6;
-	for(long double x : v){
-		man += abs(x);
-		euc += abs(x)*abs(x);
-		cheb = max(cheb, abs(x));
+	ll ans = 0;
+	for(int i =1; i < n; ++i){
+		ans += max(0ll,v[i-1] - v[i]);
+		v[i] = max(v[i], v[i-1]);
 	}
-	cout << setprecision(16);
-	cout << man << endl;
-	cout << sqrt(euc) << endl;
-	cout << cheb << endl;
+	cout << ans << endl;
 }
 
 int main()
