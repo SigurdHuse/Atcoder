@@ -7,22 +7,17 @@
 typedef long long ll;
 using namespace std; 
 
-// Optimal choice gives us
-// v[0] + v[1] + v[1] + v[2] + v[2] + ...
-
 void solve(){
-	int n; cin >> n;
-	vector<int> v(n);
-	for(auto &a : v) cin >> a;
-	
-	ll ans = 0;
-	int off = 1;
-	sort(all(v), greater<int>());
-	for(int i = 1; i < n; ++i){
-		ans += v[i - off];
-		off += !(i & 1);
+	int x, y; cin >> x >> y;
+	if(y & 1){
+		cout << "No" << endl;
+		return;
 	}
-	cout << ans << endl;
+	if(2*x <= y && 4*x >= y){
+		cout << "Yes" << endl;
+		return;
+	}
+	cout << "No" << endl;
 }
 
 int main()

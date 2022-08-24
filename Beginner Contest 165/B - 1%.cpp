@@ -7,22 +7,16 @@
 typedef long long ll;
 using namespace std; 
 
-// Optimal choice gives us
-// v[0] + v[1] + v[1] + v[2] + v[2] + ...
+// Want to find y where 100*1.01^y >= x
 
 void solve(){
-	int n; cin >> n;
-	vector<int> v(n);
-	for(auto &a : v) cin >> a;
-	
-	ll ans = 0;
-	int off = 1;
-	sort(all(v), greater<int>());
-	for(int i = 1; i < n; ++i){
-		ans += v[i - off];
-		off += !(i & 1);
+	ll x; cin >> x;
+	ll p = 100, step = 0;
+	while(p < x){
+		p += p / 100;
+		step++;
 	}
-	cout << ans << endl;
+	cout << step << endl;
 }
 
 int main()

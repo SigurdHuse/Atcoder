@@ -7,22 +7,23 @@
 typedef long long ll;
 using namespace std; 
 
-// Optimal choice gives us
-// v[0] + v[1] + v[1] + v[2] + v[2] + ...
+const int MOD = 2019; 
 
 void solve(){
-	int n; cin >> n;
-	vector<int> v(n);
-	for(auto &a : v) cin >> a;
+	string s; cin >> s;
+	int n = SZ(s);
+	ll res = 0;
+	vector<int> cnt(MOD);
 	
-	ll ans = 0;
-	int off = 1;
-	sort(all(v), greater<int>());
-	for(int i = 1; i < n; ++i){
-		ans += v[i - off];
-		off += !(i & 1);
+	cnt[0] = 1;	
+	int cur = 0, p = 1;
+	for(int i = n-1; i>=0; --i){
+		cur = (cur + p * (s[i] - '0')) % MOD;
+		res += cnt[cur];
+		cnt[cur]++;
+		p = p * 10 % MOD;
 	}
-	cout << ans << endl;
+	cout << res << endl;
 }
 
 int main()

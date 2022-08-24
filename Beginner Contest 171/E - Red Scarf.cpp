@@ -7,22 +7,14 @@
 typedef long long ll;
 using namespace std; 
 
-// Optimal choice gives us
-// v[0] + v[1] + v[1] + v[2] + v[2] + ...
-
 void solve(){
 	int n; cin >> n;
 	vector<int> v(n);
 	for(auto &a : v) cin >> a;
-	
-	ll ans = 0;
-	int off = 1;
-	sort(all(v), greater<int>());
-	for(int i = 1; i < n; ++i){
-		ans += v[i - off];
-		off += !(i & 1);
-	}
-	cout << ans << endl;
+	int tmp = 0;
+	for(int i : v) tmp ^= i;
+	for(int i : v) cout << (tmp^i) << " ";
+	cout << endl;
 }
 
 int main()

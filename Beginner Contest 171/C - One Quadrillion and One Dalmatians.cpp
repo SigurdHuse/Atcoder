@@ -7,21 +7,23 @@
 typedef long long ll;
 using namespace std; 
 
-// Optimal choice gives us
-// v[0] + v[1] + v[1] + v[2] + v[2] + ...
+vector<ll> powers(14);
 
 void solve(){
-	int n; cin >> n;
-	vector<int> v(n);
-	for(auto &a : v) cin >> a;
+	ll n; cin >> n;
+	powers[0] = 1;
+	for(int i = 1; i < 14; ++i) powers[i] = powers[i-1]*27;
+	sort(all(powers), greater<ll>());
+	string ans = "";
 	
-	ll ans = 0;
-	int off = 1;
-	sort(all(v), greater<int>());
-	for(int i = 1; i < n; ++i){
-		ans += v[i - off];
-		off += !(i & 1);
+	while(n){
+		n--;
+		int r = n % 26;
+		char ch = 'a' + r;
+		ans += ch;
+		n /= 26;
 	}
+	reverse(all(ans));
 	cout << ans << endl;
 }
 

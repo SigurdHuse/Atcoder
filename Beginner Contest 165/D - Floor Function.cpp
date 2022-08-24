@@ -7,22 +7,18 @@
 typedef long long ll;
 using namespace std; 
 
-// Optimal choice gives us
-// v[0] + v[1] + v[1] + v[2] + v[2] + ...
+// Binary search
+
+ll a, b, n;
+
+ll f(ll x){
+	return floor(a*x/b + 0.0) - a*floor(x/b + 0.0);
+}
 
 void solve(){
-	int n; cin >> n;
-	vector<int> v(n);
-	for(auto &a : v) cin >> a;
-	
-	ll ans = 0;
-	int off = 1;
-	sort(all(v), greater<int>());
-	for(int i = 1; i < n; ++i){
-		ans += v[i - off];
-		off += !(i & 1);
-	}
-	cout << ans << endl;
+	cin >> a >> b >> n;
+	ll x = min(n, b-1);
+	cout << f(x) << endl;
 }
 
 int main()

@@ -7,22 +7,20 @@
 typedef long long ll;
 using namespace std; 
 
-// Optimal choice gives us
-// v[0] + v[1] + v[1] + v[2] + v[2] + ...
+// Pure brute force
+// 1e18^0.2 = 3981
 
 void solve(){
-	int n; cin >> n;
-	vector<int> v(n);
-	for(auto &a : v) cin >> a;
-	
-	ll ans = 0;
-	int off = 1;
-	sort(all(v), greater<int>());
-	for(int i = 1; i < n; ++i){
-		ans += v[i - off];
-		off += !(i & 1);
+	ll x; cin >> x;
+	for(ll a = 3000; a >= -3000; --a){
+		for(ll b = -3000; b <= 3000; b++){
+			ll tmp1 = pow(a,5), tmp2 = pow(b,5);
+			if(tmp1 - tmp2 == x){
+				cout << a << " " << b << endl;
+				return;
+			}
+		}
 	}
-	cout << ans << endl;
 }
 
 int main()
