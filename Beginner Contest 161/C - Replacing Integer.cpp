@@ -8,7 +8,9 @@ typedef long long ll;
 using namespace std; 
 
 void solve(){
-	
+	ll n, k; cin >> n >> k;
+	n -= k * (n / k);
+	cout << min(n, abs(n - k)) << endl;
 }
 
 int main()
