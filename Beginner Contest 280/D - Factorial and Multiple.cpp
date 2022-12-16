@@ -7,20 +7,29 @@
 typedef long long ll;
 using namespace std; 
 
-void solve(){
-	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
+ll fac_mod(ll i, ll k){
+	ll ans = 1;
 	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
-		}
+	for(ll fac = 1; fac <= i; ++fac){
+		ans = (ans *fac) % k; 
 	}
-	cout << "No" << endl;
+	return ans;
+}
+
+void solve(){
+	ll k; 
+	cin >> k;
+	ll fac = 1, ans = 1;
+	
+	
+	for(ll i = 1; i <= 2*sqrt(k); ++i){
+		if(fac == 0ll){
+			break;
+		}
+		ans++;
+		fac = (fac * (ans % k)) % k;
+	}
+	cout << (fac == 0ll ? ans : k) << endl;
 }
 
 int main()

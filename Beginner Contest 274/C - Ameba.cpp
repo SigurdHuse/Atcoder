@@ -8,19 +8,19 @@ typedef long long ll;
 using namespace std; 
 
 void solve(){
-	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
+	int n; cin >> n;
+	vector<int> v(n+1), parent(2*n+2);
 	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
-		}
+	for(int i = 1; i <= n; ++i) cin >> v[i];
+	
+	for(int i = 1; i <= n; ++i){
+		parent[2*i] = parent[v[i]] + 1;
+		parent[2*i + 1] = parent[v[i]] + 1;
 	}
-	cout << "No" << endl;
+	
+	for(int k = 1; k <= 2*n + 1; ++k){
+		cout << parent[k] << endl;
+	}
 }
 
 int main()

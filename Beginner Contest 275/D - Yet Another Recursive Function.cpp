@@ -7,20 +7,20 @@
 typedef long long ll;
 using namespace std; 
 
-void solve(){
-	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
-	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
-		}
+unordered_map<ll,ll> mem;
+
+ll f(ll x){
+	if(x == 0) return 1;
+	if(mem.count(x)) return mem[x];
+	else{
+		mem[x] = f(x / 2) + f(x / 3);
+		return mem[x];
 	}
-	cout << "No" << endl;
+}
+
+void solve(){
+	ll n; cin >> n;
+	cout << f(n) << endl;
 }
 
 int main()

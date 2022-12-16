@@ -8,19 +8,14 @@ typedef long long ll;
 using namespace std; 
 
 void solve(){
-	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
+	int n; cin >> n;
+	vector<int> v(n), ava;
+	for(auto &a : v) cin >> a;
 	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
-		}
-	}
-	cout << "No" << endl;
+	prev_permutation(all(v));
+	
+	for(int i : v) cout << i << " ";
+	cout << endl;
 }
 
 int main()

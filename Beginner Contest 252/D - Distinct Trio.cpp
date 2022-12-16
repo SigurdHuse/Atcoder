@@ -7,20 +7,24 @@
 typedef long long ll;
 using namespace std; 
 
+const int N = 2*1e5;
+
 void solve(){
-	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
-	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
-		}
+	int n; cin >> n;
+	vector<int> v(n);
+	vector<ll> cnt(N+1);
+	for(auto &a : v){
+		cin >> a;
+		cnt[a]++;
 	}
-	cout << "No" << endl;
+	for(int i = 0; i < N; ++i){
+		cnt[i+1] += cnt[i];
+	}
+	ll ans = 0;
+	for(int j = 0; j < n; ++j){
+		ans += cnt[v[j] - 1]*(n-cnt[v[j]]);
+	}
+	cout << ans << endl;
 }
 
 int main()

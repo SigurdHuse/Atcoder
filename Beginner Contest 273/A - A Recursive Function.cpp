@@ -7,20 +7,14 @@
 typedef long long ll;
 using namespace std; 
 
+int f(int k){
+	if(k == 0) return 1;
+	return k * f(k-1);
+}
+
 void solve(){
-	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
-	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
-		}
-	}
-	cout << "No" << endl;
+	int n; cin >> n;
+	cout << f(n) << endl;
 }
 
 int main()

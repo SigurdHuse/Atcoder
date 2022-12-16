@@ -9,18 +9,13 @@ using namespace std;
 
 void solve(){
 	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
+	vector<int> v(n);
+	for(auto &a : v) cin >> a;
 	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
-		}
+	for(int i = 0; i < n - k; ++i){
+		if(v[i] > v[i+k]) swap(v[i], v[i+k]);
 	}
-	cout << "No" << endl;
+	cout << (is_sorted(all(v)) ? "Yes" : "No") << endl;
 }
 
 int main()

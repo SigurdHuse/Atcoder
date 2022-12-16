@@ -7,20 +7,22 @@
 typedef long long ll;
 using namespace std; 
 
+const ll M = 998244353;
+
 void solve(){
-	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
+	vector<ll> v(6);
 	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
-		}
+	for(auto &a : v){
+		cin >> a;
+		a %= M;
 	}
-	cout << "No" << endl;
+	ll ans = v[0] * v[1] % M;
+	ans = (ans * v[2]) % M;
+	
+	ll sub = (v[3] * v[4]) % M;
+	sub = (sub * v[5]) % M;
+	
+	cout << (ans - sub + M) % M << endl;
 }
 
 int main()

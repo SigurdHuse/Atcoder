@@ -9,18 +9,17 @@ using namespace std;
 
 void solve(){
 	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
+	vector<int> v(n);
 	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
-		}
+	for(auto &x : v) cin >> x;
+	
+	for(int i = k;i < n; ++i){
+		cout << v[i] << " ";
 	}
-	cout << "No" << endl;
+	for(int i = 0; i < min(n,k); ++i){
+		cout << 0 << " ";
+	}
+	cout << endl;
 }
 
 int main()

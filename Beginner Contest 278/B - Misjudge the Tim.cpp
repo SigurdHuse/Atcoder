@@ -7,20 +7,28 @@
 typedef long long ll;
 using namespace std; 
 
-void solve(){
-	int n, k; cin >> n >> k;
-	vector<int> a(n), b(k);
-	for(auto &i : a) cin >> i;
-	for(auto &i : b) cin >> i;
-	int mx = *max_element(all(a));
+bool is_valid(int h, int m){
+	int top = h % 10;
+	int bottom = m / 10;
 	
-	for(auto j : b){
-		if(a[j-1] == mx){
-			cout << "Yes" << endl;
-			return;
+	if(h/10 == 2 && bottom > 3) return false;
+	
+	if(top >= 6) return false;
+	
+	return true;
+}
+
+void solve(){
+	int h, m; cin >> h >> m;
+	
+	while(!is_valid(h,m)){
+		m++;
+		if(m == 60){
+			m = 0;
+			h = (h + 1)%24;
 		}
 	}
-	cout << "No" << endl;
+	cout << h << " " << m << endl;
 }
 
 int main()
