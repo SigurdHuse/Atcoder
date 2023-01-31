@@ -4,18 +4,29 @@
 typedef long long ll;
 using namespace std; 
 
-const int mod = 998244353;
+const ll mod = 998244353;
+
+ll dp[55][2505];
 
 void solve(){
-	ll n, m, k; cin >> n >> m >> k;
-	ll ans = 1;
-	k -= n;
-	for(;k > 0; --k){
-		ans *= min(m,k);
-		ans %= mod;
+	int n, m, k; cin >> n >> m >> k;
+	for(int i = 1; i <= m; ++i){
+		dp[1][i] = 1;
 	}
-	ans *= n;
-	cout << ans % mod << endl;
+	for(int i = 2; i <= n; ++i){
+		for(int j = 1; j <= m; ++j){
+			for(int t = i-1; t <= 2500; ++t){
+				if(j + t > 2500) break;
+				dp[i][j+t] += dp[i-1][t];
+				dp[i][j+t] %= mod;
+			}
+		}
+	}
+	ll ans = 0;
+	for(int i = 1; i <= k; ++i){
+		ans = (ans + dp[n][i]) % mod;
+	}
+	cout << ans << endl;
 }
 
 int main()

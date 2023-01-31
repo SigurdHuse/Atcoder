@@ -8,29 +8,25 @@
 typedef long long ll;
 using namespace std; 
 
+const ll M = 998244353;
+
 void solve(){
-	int n, x, y; cin >> n >> x >> y;
-	vector<int> v(n);
-	for(auto &a : v) cin >> a;
+	int n; cin >> n;
+	vector<ll> dp(9, 1), new_dp(9);
 	
-	int start = INT_MAX;
-	
-	bool mi = 0, mx = 0;
-	
-	vector<pair<int,int>> segs;
-	
-	for(int i = 0; i < n; ++i){
-		if(y <= v[i] && x >= v[i]) start = min(start,i);
-		if(v[i] > x || v[i] < y){
-			mi = 0; mx = 0;
-			start = INT_MAX;
-		}
-		if(v[i] == y) mi = 1;
-		if(v[i] == )
+	for(int i = 0; i < n-1; ++i){
+		new_dp[0] = (dp[0] + dp[1]) % M;
+		new_dp[8] = (dp[8] + dp[7]) % M;
 		
+		for(int j = 1; j < 8; ++j){
+			new_dp[j] = (dp[j-1] + dp[j] + dp[j+1]) % M;
+		}
+		swap(dp, new_dp);
 	}
-	
-	
+	ll ans = 0;
+	for(int i = 0; i < 9; ++i){
+		ans = (ans + dp[i]) % M;
+	}
 	cout << ans << endl;
 }
 
